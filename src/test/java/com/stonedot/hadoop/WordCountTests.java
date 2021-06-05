@@ -44,7 +44,7 @@ public class WordCountTests {
             mapper = new WordCount.TokenizerMapper();
             writeCaptor = new WriteCaptor<>(in -> ImmutablePair.of(in.left.toString(), in.right.get()));
 
-            doReturn(mockCounter).when(mockContext).getCounter(any());
+            doReturn(mockCounter).when(mockContext).getCounter(eq(WordCount.WordCountEnum.WORD_COUNT));
             doNothing().when(mockCounter).increment(anyLong());
             doAnswer(writeCaptor.capture()).when(mockContext).write(any(), any());
         }
